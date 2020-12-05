@@ -35,6 +35,8 @@ public class plear : MonoBehaviour
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
+    internal static object position;
+
     // 事件：喚醒 - 在 Start 之前執行一次
     // 剛體 = 取得元件<剛體元件>()；
     // 抓到角色身上的剛體元件存放到 rig 欄位內
@@ -146,7 +148,7 @@ public class plear : MonoBehaviour
     private void OnDrawGizmos()
     {
         // 圖示 顏色
-        Gizmos.color = new Color(1, 0, 0, 0.5f);
+        Gizmos.color = Color.red;
         // 圖示 繪製球體(中心點，半徑)
         Gizmos.DrawSphere(new Vector2(transform.position.x, transform.position.y) + offset, radius);
     }
