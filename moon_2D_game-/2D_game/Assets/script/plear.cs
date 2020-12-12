@@ -35,7 +35,7 @@ public class plear : MonoBehaviour
     private AudioSource aud;
     private Rigidbody2D rig;
     private Animator ani;
-    internal static object position;
+    private gameManager gm;
 
     // 事件：喚醒 - 在 Start 之前執行一次
     // 剛體 = 取得元件<剛體元件>()；
@@ -45,6 +45,10 @@ public class plear : MonoBehaviour
         rig = GetComponent<Rigidbody2D>();
         ani = GetComponent<Animator>();
         aud = GetComponent<AudioSource>();
+
+        // 透過<類型>取得物件
+        // 僅限於此<類型>在場景上只有一個
+        gm = FindObjectOfType<gameManager>();
     }
     //重復執行
     private void Update()
@@ -68,7 +72,7 @@ public class plear : MonoBehaviour
             // eulerAngles 歐拉角度 0 - 180 - 270 - 360...
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
-
+        // KeyCode 列舉(下拉式選單) - 所有輸入的項目 滑鼠、鍵盤、搖桿
         if (Input.GetKeyDown(KeyCode.A))
         {
             transform.eulerAngles = new Vector3(0, 180, 0);
@@ -121,7 +125,6 @@ public class plear : MonoBehaviour
     private void Dead(string obj)
     {
         // 如果 物件名稱 等於 死亡區域
-        // 等於 ==
         if (obj == "死亡區域")
         {
             //this.enabled = false;
@@ -130,9 +133,13 @@ public class plear : MonoBehaviour
 
             // 延遲呼叫("方法名稱"，延遲時間)
             Invoke("Replay", 2.5f);
-        }
+            // 呼叫 GM 處理玩家死亡
+            gm.playerDead();
+        }   
     }
-
+    /// <summary>
+    /// 重新遊戲
+    /// </summary>
     private void Replay()
     {
         SceneManager.LoadScene("關卡 1");
