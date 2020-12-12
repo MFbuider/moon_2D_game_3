@@ -3,7 +3,8 @@
 public class enemy : MonoBehaviour
 {
     [Header("速度"), Tooltip("用來設定移動的速度。")]
-    public float speed = 10.5f;[Range(0, 1000)]
+    [Range(0, 1000)]
+    public float speed = 10.5f;
     [Header("子彈"), Tooltip("存放要生成的子彈預製物")]
     public GameObject bullet;
     [Header("子彈生成點"), Tooltip("子彈要生成的起始位置")]
@@ -21,6 +22,9 @@ public class enemy : MonoBehaviour
     public float rangeAttack = 8.5f;
     [Header("攻擊間隔"), Range(0, 10)]
     public float intervalAttack = 2.5f;
+    [Header("分數"), Range(0, 5000)]
+    public int score = 20;
+
     /// <summary>
     /// 計時器：紀錄時間
     /// </summary>
@@ -28,7 +32,8 @@ public class enemy : MonoBehaviour
     private Transform player;
     Rigidbody2D rig;
     private AudioSource aud;
-    //private AudioSource aud;
+    private Animator ani;
+    private gameManager gm;
 
 
     #region 方法
@@ -92,11 +97,17 @@ public class enemy : MonoBehaviour
     /// </summary>
     private void Dead()
     {
+        enabled = false;
+        ani.SetBool("death Bool", true);
+        GetComponent<CapsuleCollider2D>().enabled = false;      // 關閉碰撞器
+        rig.Sleep();
+        //Destroy(gameObject, 2.5f);                              // 刪除(遊戲物件，延遲秒數)
+        gm.AddScore(score);
     }
-    #endregion
+        #endregion
 
-    #region 事件
-    private void OnDrawGizmosSelected()
+        #region 事件
+        private void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(0, 0, 1, 0.3f);
         Gizmos.DrawSphere(transform.position, rangeTrack);
@@ -106,12 +117,24 @@ public class enemy : MonoBehaviour
     }
     private void Awake()
     {
-        object rig = GetComponent<Rigidbody2D>();
-        object ani = GetComponent<Animator>();
-
+        rig = GetComponent<Rigidbody2D>();
+        aud = GetComponent<AudioSource>();
+        ani = GetComponent<Animator>();
+        gm = FindObjectOfType<gameManager>();
         // 玩家變形 = 遊戲物件.尋找("玩家物件名稱").變形
-        player = GameObject.Find("玩家").transform;
-
+        player = GameObject.Find("Gunner").transform;
+    }
+    private void Update()
+    {
+        Move();
+        Fire();
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "子彈")
+        {
+            Dead();
+        }
     }
     #endregion
 }

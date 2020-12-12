@@ -125,7 +125,7 @@ public class plear : MonoBehaviour
     private void Dead(string obj)
     {
         // 如果 物件名稱 等於 死亡區域
-        if (obj == "死亡區域")
+        if (obj == "死亡區域" || obj == "敵人子彈")
         {
             //this.enabled = false;
             enabled = false;                    // 此腳本 關閉
@@ -142,7 +142,7 @@ public class plear : MonoBehaviour
     /// </summary>
     private void Replay()
     {
-        SceneManager.LoadScene("關卡 1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     // OCE 碰撞時執行一次的事件
@@ -159,5 +159,7 @@ public class plear : MonoBehaviour
         // 圖示 繪製球體(中心點，半徑)
         Gizmos.DrawSphere(new Vector2(transform.position.x, transform.position.y) + offset, radius);
     }
+    
+        
 }
 
