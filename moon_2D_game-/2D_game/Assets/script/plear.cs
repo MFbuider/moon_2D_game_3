@@ -125,10 +125,11 @@ public class plear : MonoBehaviour
     /// <param name="obj">碰到物件的名稱</param>
     private void Dead(string obj)
     {
-        if 
+       
         // 如果 物件名稱 等於 死亡區域
         if (obj == "死亡區域" || obj == "敵人子彈")
         {
+            if (ani.GetBool("death Bool")) return;
             //this.enabled = false;
             enabled = false;                    // 此腳本 關閉
             ani.SetBool("death Bool", true);

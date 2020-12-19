@@ -12,13 +12,18 @@ public class gameManager : MonoBehaviour
     // 一般欄位 重新載入場景 會還原為預設值
     // 靜態欄位 重新載入場景 不會還原為預設值
     public static int live = 3;
-    public static int score;
+    public int score;
     private void Awake()
     {
         SetCollision();
         setlive();
     }
-   
+
+    private void Start()
+    {
+        setlive();
+    }
+
     /// <summary>
     /// 玩家死亡
     /// </summary>
@@ -33,11 +38,11 @@ public class gameManager : MonoBehaviour
     public void AddScore (int add)
     {
         score += add;
-        textScore.text = "10：" + score;
+        textScore.text = "分數：" + score;
     }
     private void setlive()
     {
-    for (int i = 1; i < 100; i++)
+    for (int i = 0; i < 3; i++)
         {
             if (i >= live) lives[i].SetActive(false);
         }
@@ -64,10 +69,10 @@ public class gameManager : MonoBehaviour
     /// </summary>
     private void SetCollision()
     {
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("敵人"), LayerMask.NameToLayer("敵人"));
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("玩家"), LayerMask.NameToLayer("玩家子彈"));
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("敵人"), LayerMask.NameToLayer("敵人子彈"));
-        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("玩家子彈"), LayerMask.NameToLayer("敵人子彈"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("enemy"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("player"), LayerMask.NameToLayer("子彈"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("enemy"), LayerMask.NameToLayer("敵人子彈"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("子彈"), LayerMask.NameToLayer("敵人子彈"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("敵人子彈"), LayerMask.NameToLayer("敵人子彈"));
     }
 }

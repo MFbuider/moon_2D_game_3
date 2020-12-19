@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2978384763086792269}
   - component: {fileID: 843971832264958949}
   - component: {fileID: 1214437517899533624}
-  m_Layer: 0
-  m_Name: gun 1
+  m_Layer: 11
+  m_Name: "\u5B50\u5F48"
   m_TagString: "\u5B50\u5F48"
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

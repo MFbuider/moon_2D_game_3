@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - "\u5B50\u5F48"
+  - "\u6575\u4EBA\u5B50\u5F48"
+  - "\u6B7B\u4EA1\u5340\u57DF"
   layers:
   - Default
   - TransparentFX
@@ -15,11 +17,11 @@ TagManager:
   - 
   - 
   - floor
-  - 
-  - 
-  - 
-  - 
-  - 
+  - player
+  - enemy
+  - "\u5B50\u5F48"
+  - "\u6575\u4EBA\u5B50\u5F48"
+  - "\u6B7B\u4EA1\u5340\u57DF"
   - 
   - 
   - 
