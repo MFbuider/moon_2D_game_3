@@ -42,8 +42,6 @@ public class enemy : MonoBehaviour
     /// </summary>
     private void Move()
     {
-        void Move()
-        {
             // 面向玩家：如果玩家的 X 大於 敵人的 X 角度 0，否則 角度 180
             if (player.position.x > transform.position.x)
             {
@@ -67,8 +65,7 @@ public class enemy : MonoBehaviour
             {
                 rig.velocity = transform.right * speed;
                 rig.velocity = new Vector2(rig.velocity.x, rig.velocity.y);
-            }
-        }
+            }  
     }
 
     /// <summary>

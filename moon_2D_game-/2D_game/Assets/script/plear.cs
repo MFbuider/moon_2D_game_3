@@ -24,6 +24,7 @@ public class plear : MonoBehaviour
     [Header("子彈速度"), Range(0, 5000)]
     public int speedBullet = 800;
     [Header("開槍音效")]
+    public AudioClip soundFire;
     public int lives = 3;
     [Header("檢查地面位移")]
     public Vector2 offset;
@@ -124,6 +125,7 @@ public class plear : MonoBehaviour
     /// <param name="obj">碰到物件的名稱</param>
     private void Dead(string obj)
     {
+        if 
         // 如果 物件名稱 等於 死亡區域
         if (obj == "死亡區域" || obj == "敵人子彈")
         {
@@ -149,7 +151,7 @@ public class plear : MonoBehaviour
     // collision 碰到物件的資訊
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Dead(collision.gameObject.name);
+        Dead(collision.gameObject.tag);
     }
     // 繪製圖示：僅顯示魚場景面板
     private void OnDrawGizmos()

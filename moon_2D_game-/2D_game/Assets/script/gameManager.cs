@@ -17,8 +17,8 @@ public class gameManager : MonoBehaviour
     {
         SetCollision();
         setlive();
-        AddScore(0);
     }
+   
     /// <summary>
     /// 玩家死亡
     /// </summary>
@@ -33,11 +33,28 @@ public class gameManager : MonoBehaviour
     public void AddScore (int add)
     {
         score += add;
-        textScore.text = "分數：" + score;
+        textScore.text = "10：" + score;
     }
     private void setlive()
     {
     for (int i = 1; i < 100; i++)
+        {
+            if (i >= live) lives[i].SetActive(false);
+        }
+    }
+    /// <summary>
+    ///  更新生命介面
+    /// </summary>
+    private void SetLive()
+    {
+        // 陣列欄位[編號] 的 方法()
+        //lives[0].SetActive(false);
+
+        //for (int i = 1; i < 100; i++)
+        //{
+        //    print("迴圈：" + i);
+        //}
+        for (int i = 0; i < lives.Length; i++)
         {
             if (i >= live) lives[i].SetActive(false);
         }
