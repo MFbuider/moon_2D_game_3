@@ -125,7 +125,7 @@ public class plear : MonoBehaviour
     /// <param name="obj">碰到物件的名稱</param>
     private void Dead(string obj)
     {
-       
+
         // 如果 物件名稱 等於 死亡區域
         if (obj == "死亡區域" || obj == "敵人子彈")
         {
@@ -138,7 +138,7 @@ public class plear : MonoBehaviour
             Invoke("Replay", 2.5f);
             // 呼叫 GM 處理玩家死亡
             gm.playerDead();
-        }   
+        }
     }
     /// <summary>
     /// 重新遊戲
@@ -147,7 +147,6 @@ public class plear : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
     // OCE 碰撞時執行一次的事件
     // collision 碰到物件的資訊
     private void OnCollisionEnter2D(Collision2D collision)
